@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIGMA GAMES</title>
+<style>
+body{background:#0b1020;color:white;font-family:Arial;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#151c33;padding:15px;border-radius:14px}
+img{width:100%;border-radius:10px}
+button{width:100%;padding:10px;border:none;border-radius:10px;background:#7c4dff;color:white;cursor:pointer}
+</style>
+</head>
+<body>
+
+<h1>SIGMA GAMES</h1>
+
+<div class="grid" id="games"></div>
+
+<script>
+const BASE = "https://cdn.jsdelivr.net/gh/YOURUSERNAME/sigma-games-template@main";
+
+const zonesURL = `${BASE}/zones.json`;
+const coverURL = `${BASE}/covers`;
+const htmlURL = `${BASE}/games`;
+
+const gamesDiv = document.getElementById("games");
+
+async function loadGames() {
+  const response = await fetch(zonesURL);
+  const games = await response.json();
+
+  games.forEach(game => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="${game.cover.replace("{COVER_URL}", coverURL)}">
+      <h2>${game.name}</h2>
+      <button>Play</button>
+    `;
+
+    card.querySelector("button").onclick = async () => {
+      const gameURL = game.url.replace("{HTML_URL}", htmlURL);
+      window.open(gameURL, "_blank");
+    };
+
+    gamesDiv.appendChild(card);
+  });
+}
+
+loadGames();
+</script>
+
+</body>
+</html>
