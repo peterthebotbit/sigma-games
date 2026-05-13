@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Minecraft",
+    "url": "{HTML_URL}/minecraft/minecraft.html",
+    "cover": "{COVER_URL}/minecraft.png"
+  },
+  {
+    "id": 2,
+    "name": "Slope",
+    "url": "{HTML_URL}/slope/slope.html",
+    "cover": "{COVER_URL}/slope.png"
+  },
+  {
+    "id": 3,
+    "name": "FNF",
+    "url": "{HTML_URL}/fnf/index.html",
+    "cover": "{COVER_URL}/fnf.png"
+  }
+]
